@@ -1,0 +1,70 @@
+<!-- repo.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+            <title>GitHub Search</title>
+            <meta charset="utf-8"/>
+            <!-- CSS ===================== -->
+            <link rel="stylesheet" href="../css/style.css">
+            <!-- load bootstrap -->
+            <link rel="stylesheet" href="../css/bootstrap.min.css">
+            <!-- JS ===================== -->
+            <!-- load angular -->
+
+            <script src="../js/angular.min.js"></script>
+            <script src="../js/repo.js"></script>
+            
+  </head>
+  <body ng-controller="directorycontroller" ng-app="directoryapp">
+      <header id = "main-header">
+        <center><h1><span>GitHub Search</span></h1></center>
+    </header>
+    <a href="user.html"><button class="btn btn-primary nav">Search by User</button></a>
+    <label class="switch">
+            <input type="checkbox" ng-click="orderChange()">
+            <span class="slider round">{{order}}</span>
+    </label>
+  <div class="container">
+	<div class="row">
+           <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class=" search-query form-control" ng-model="searchtext" ng-keydown="$event.keyCode === 13 && searchUsers()" placeholder="Search Repository..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <!-- Details-->
+            <table class="table">
+              <tr>
+                    <th><img src="images/repo.png">Name</img>
+                    </th>
+                    <th><img src="images/owner.png">Owner</img>
+                    </th>
+                    <th><img src="images/description.png">Description</img>
+                    </th>
+                    <th><img src="images/star.png">Stars</img>
+                    </th>
+                    <th><img src="images/fork.png">Forks</img>
+                    </th>
+                    <th><img src="images/issues.png"> Issues</img>
+                    </th>
+                    <th><img src="images/created.png">Created</img>
+                    </th>
+                </tr>
+                <tr ng-repeat="repo in Details | orderBy: '':orderDirection" class="myRow">     
+                  <td><a style="display:block;" href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></td>
+                  <td><a style="display:block;" href="{{repo.html_url}}" target="_blank">{{repo.owner.login}}</a></td>
+                  <td><a style="display:block;" href="{{repo.html_url}}" target="_blank">{{repo.description}}</a></td>
+                  <td><a style="display:block;" href="{{repo.html_url}}" target="_blank">{{repo.stargazers_count}}</a></td>
+                  <td><a style="display:block;" href="{{repo.html_url}}" target="_blank">{{repo.forks_count}}</a></td>
+                  <td><a style="display:block;" href="{{repo.html_url}}" target="_blank">{{repo.open_issues}}</a></td>
+                  <td><a style="display:block;" href="{{repo.html_url}}" target="_blank">{{repo.created_at}}</a></td>
+                </tr>
+          </table>
+	</div>
+</div>
+</body>
+</html>
